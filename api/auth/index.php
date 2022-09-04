@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	// get posted data
 	$data = json_decode(file_get_contents("php://input", true));
 	
-	$sql = "SELECT * FROM user WHERE (ip NOT IN (SELECT  ip FROM user WHERE banished = 0)) AND username = '" . mysqli_real_escape_string($dbConn, $data->username) . "' AND password = '" . mysqli_real_escape_string($dbConn, md5($data->password)) . "' LIMIT 1";
+	$sql = "SELECT * FROM user WHERE (ip NOT IN (SELECT  ip FROM user WHERE banished = 1)) AND username = '" . mysqli_real_escape_string($dbConn, $data->username) . "' AND password = '" . mysqli_real_escape_string($dbConn, md5($data->password)) . "' LIMIT 1";
 	
 	$result = dbQuery($sql);
 	
