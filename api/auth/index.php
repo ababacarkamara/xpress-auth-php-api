@@ -22,11 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$username = $row['username'];
 		
 		$headers = array('alg'=>'HS256','typ'=>'JWT');
-		$payload = array('username'=>$username, 'exp'=>(time() + 60));
+		$payload = array('username'=>$username, 'exp'=>(time() + 3600));
 
 		$jwt = generate_jwt($headers, $payload);
 		
-		echo json_encode(array('token' => $jwt));
+		echo json_encode(array('success' => 'You login successfully','token' => $jwt));
 	}
 }
 

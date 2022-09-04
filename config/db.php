@@ -1,23 +1,27 @@
 <?php	
-$dbConn = mysqli_connect('localhost', 'root', '', 'xpress-auth-rest-api') or die('MySQL connect failed. ' . mysqli_connect_error());
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $db = "xpress-auth-rest-api";
 
-function dbQuery($sql) {
-	global $dbConn;
-	$result = mysqli_query($dbConn, $sql) or die(mysqli_error($dbConn));
-	return $result;
-}
+    $dbConn = mysqli_connect($servername, $username, $password, $db) or die('MySQL connect failed. ' . mysqli_connect_error());
 
-function dbFetchAssoc($result) {
-	return mysqli_fetch_assoc($result);
-}
+    function dbQuery($sql) {
+        global $dbConn;
+        $result = mysqli_query($dbConn, $sql) or die(mysqli_error($dbConn));
+        return $result;
+    }
 
-function dbNumRows($result) {
-    return mysqli_num_rows($result);
-}
+    function dbFetchAssoc($result) {
+        return mysqli_fetch_assoc($result);
+    }
 
-function closeConn() {
-	global $dbConn;
-	mysqli_close($dbConn);
-}
-	
-//End of file
+    function dbNumRows($result) {
+        return mysqli_num_rows($result);
+    }
+
+    function closeConn() {
+        global $dbConn;
+        $dbConn->close;
+    }
+?>
